@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+ config.vm.define :firewall do |firewall|
+ 	firewall.vm.box = "bento/centos-7.4"
+ 	firewall.vm.box_version = "0.0.1"
+ 	firewall.vm.network "public_network", ip: "172.16.0.33"
+ 	firewall.vm.network :private_network, ip: "192.168.56.10"
+ 	firewall.vm.hostname = "firewall"
+ end
+ config.vm.define :clientep do |clientep|
+ 	clientep.vm.box = "bento/centos-7.4"
+ 	clientep.vm.box_version = "0.0.1"
+ 	clientep.vm.network :private_network, ip: "192.168.56.11"
+ 	clientep.vm.hostname = "clientep"
+ end
+end

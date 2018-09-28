@@ -1,0 +1,26 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+ config.vm.define :servidorDNS do |servidorDNS|
+ 	servidorDNS.vm.box = "bento/centos-7.4"
+ 	servidorDNS.vm.network "public_network", ip: "172.16.0.30"
+ 	servidorDNS.vm.hostname = "servidorDNS"
+ 	servidorDNS.vm.provision :shell, path: "config_DNS.sh"
+ end
+
+ config.vm.define :servidorWEB do |servidorWEB|
+ 	servidorWEB.vm.box = "bento/centos-7.4"
+	servidorWEB.vm.network "public_network", ip: "172.16.0.31"
+ 	servidorWEB.vm.hostname = "servidorWEB"
+ 	servidorWEB.vm.provision :shell, path: "config_WEB.sh"
+ end
+
+ config.vm.define :servidorMAIL do |servidorMAIL|
+ 	servidorMAIL.vm.box = "bento/centos-7.4"
+ 	servidorMAIL.vm.network "public_network", ip: "172.16.0.32"
+ 	servidorMAIL.vm.hostname = "servidorMAIL"
+ 	servidorMAIL.vm.provision :shell, path: "config_MAIL.sh"
+ end
+
+end
